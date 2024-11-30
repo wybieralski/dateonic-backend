@@ -18,14 +18,14 @@ def analyze_with_gpt(df: pd.DataFrame):
     }
 
     prompt = f"""
-    Analyze this dataset and suggest exactly 4 different visualizations:
+    Przeanalizuj ten zbiór danych i zaproponuj dokładnie 4 różne wizualizacje:
     {json.dumps(data_info, indent=2)}
 
-    You MUST return exactly 4 charts in this order:
-    1. A line chart showing trends or changes over time
-    2. A bar chart comparing categories or groups
-    3. A pie chart showing distribution or composition
-    4. A bar chart showing another important comparison
+    MUSISZ zwrócić dokładnie 4 wykresy w tej kolejności:
+    1. Wykres liniowy pokazujący trendy lub zmiany w czasie
+    2. Wykres słupkowy porównujący kategorie lub grupy  
+    3. Wykres kołowy pokazujący rozkład lub kompozycję
+    4. Wykres słupkowy pokazujący inne istotne porównanie
 
     Return ONLY JSON with exactly this structure:
     {{
@@ -71,18 +71,20 @@ def analyze_with_gpt(df: pd.DataFrame):
         ]
     }}
 
-    Ensure that:
-    1. Each chart uses appropriate columns from the dataset
-    2. Line chart shows meaningful trends
-    3. Bar charts compare different aspects of the data
-    4. Pie chart shows a meaningful distribution
+    Upewnij się, że:
+    1. Każdy wykres używa odpowiednich kolumn ze zbioru danych
+    2. Wykres liniowy pokazuje znaczące trendy
+    3. Wykresy słupkowe porównują różne aspekty danych
+    4. Wykres kołowy pokazuje znaczący rozkład
+    5. Twoje odpowiedzi - insighty - są w jezyku polskim
     """
 
     response = client.chat.completions.create(
         model=settings.model_name,
         messages=[
             {"role": "system",
-             "content": "You are a data analysis expert. Create meaningful visualizations that help understand the data."},
+             "content": "Jesteś doświadczonym data analitykiem + analitykiem biznesowym. Stwórz sensowne wizualizacje które pomogą zrozumiec te dane i wyciągnać z nich wnioski biznesowe"},
+             # "content": "You are a data analysis expert. Create meaningful visualizations that help understand the data."},
             {"role": "user", "content": prompt}
         ]
     )
