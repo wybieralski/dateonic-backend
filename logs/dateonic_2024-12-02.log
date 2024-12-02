@@ -1,0 +1,1703 @@
+[2024-12-02 11:22:26,548] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:22:26,548] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:22:26,548] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:22:26,551] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:22:26,551] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:22:26,551] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:22:26,559] DEBUG in gpt: [0;36mDataset info prepared. Columns: date, sales, profit, category[0m
+[2024-12-02 11:22:26,560] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 11:22:29,009] ERROR in gpt: [0;31mOpenAI API error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 92, in analyze_with_gpt
+    response = client.chat.completions.create(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_utils/_utils.py", line 275, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/resources/chat/completions.py", line 829, in create
+    return self._post(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1280, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 957, in request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1046, in _request
+    return self._retry_request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1095, in _retry_request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1046, in _request
+    return self._retry_request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1095, in _retry_request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1061, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+[2024-12-02 11:22:29,016] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 402: OpenAI API quota exceeded. Please check your API credits.[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 92, in analyze_with_gpt
+    response = client.chat.completions.create(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_utils/_utils.py", line 275, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/resources/chat/completions.py", line 829, in create
+    return self._post(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1280, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 957, in request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1046, in _request
+    return self._retry_request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1095, in _retry_request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1046, in _request
+    return self._retry_request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1095, in _retry_request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1061, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 105, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 402: OpenAI API quota exceeded. Please check your API credits.
+[2024-12-02 11:22:29,019] ERROR in routes: [0;31mError during file analysis: 402: OpenAI API quota exceeded. Please check your API credits.[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 92, in analyze_with_gpt
+    response = client.chat.completions.create(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_utils/_utils.py", line 275, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/resources/chat/completions.py", line 829, in create
+    return self._post(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1280, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 957, in request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1046, in _request
+    return self._retry_request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1095, in _retry_request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1046, in _request
+    return self._retry_request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1095, in _retry_request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1061, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 105, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 402: OpenAI API quota exceeded. Please check your API credits.
+[2024-12-02 11:22:29,023] WARNING in logger: [0;33mHTTP 402: OpenAI API quota exceeded. Please check your API credits.[0m
+[2024-12-02 11:33:03,505] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:33:03,506] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:33:03,506] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:33:03,512] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:33:03,512] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:33:03,512] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:33:03,519] DEBUG in gpt: [0;36mDataset info prepared[0m
+[2024-12-02 11:33:03,519] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 11:33:37,016] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 11:33:37,016] ERROR in gpt: [0;31mFailed to parse GPT response as JSON[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 165, in analyze_with_gpt
+    analysis = json.loads(response.choices[0].message.content)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+[2024-12-02 11:33:37,018] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: Failed to parse analysis results[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 165, in analyze_with_gpt
+    analysis = json.loads(response.choices[0].message.content)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 169, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Failed to parse analysis results
+[2024-12-02 11:33:37,019] ERROR in routes: [0;31mError during file analysis: 500: Failed to parse analysis results[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 165, in analyze_with_gpt
+    analysis = json.loads(response.choices[0].message.content)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 169, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Failed to parse analysis results
+[2024-12-02 11:33:37,020] WARNING in logger: [0;33mHTTP 400: 500: Failed to parse analysis results[0m
+[2024-12-02 11:47:32,344] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:47:32,345] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:47:32,345] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:47:32,349] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:47:32,349] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:47:32,349] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:47:32,353] DEBUG in gpt: [0;36mDataset info prepared[0m
+[2024-12-02 11:47:32,353] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 11:48:37,397] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 11:48:37,400] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 11:48:37,401] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 11:48:37,401] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 11:48:37,404] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 11:48:37,405] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 11:48:37,408] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 11:48:37,409] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 11:48:37,410] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 11:48:37,410] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 11:48:37,410] DEBUG in routes: [0;36mPreparing data for chart: Sprzedaż i zysk w czasie[0m
+[2024-12-02 11:48:37,411] DEBUG in routes: [0;36mPreparing data for chart: Średnia sprzedaż i zysk per kategoria[0m
+[2024-12-02 11:48:37,412] DEBUG in routes: [0;36mPreparing data for chart: Udział kategorii w całkowitej sprzedaży[0m
+[2024-12-02 11:48:37,413] DEBUG in routes: [0;36mPreparing data for chart: Kategorie ze zyskownością poniżej średniej rynkowej[0m
+[2024-12-02 11:48:37,415] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 11:48:37,435] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:48:37,435] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:48:37,435] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:48:37,436] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:48:37,436] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:48:37,436] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:48:37,438] DEBUG in gpt: [0;36mDataset info prepared[0m
+[2024-12-02 11:48:37,439] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 11:49:09,280] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 11:49:09,281] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 11:49:09,281] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 11:49:09,281] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 11:49:09,283] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 11:49:09,284] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 11:49:09,284] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 11:49:09,285] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 11:49:09,285] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 11:49:09,285] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 11:49:09,285] DEBUG in routes: [0;36mPreparing data for chart: Sprzedaż i zysk w czasie[0m
+[2024-12-02 11:49:09,285] DEBUG in routes: [0;36mPreparing data for chart: Sprzedaż według kategorii[0m
+[2024-12-02 11:49:09,286] DEBUG in routes: [0;36mPreparing data for chart: Udział kategorii w zysku[0m
+[2024-12-02 11:49:09,286] DEBUG in routes: [0;36mPreparing data for chart: Zyskowność kategorii[0m
+[2024-12-02 11:49:09,287] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 11:49:09,290] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:49:09,290] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:49:09,290] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:49:09,291] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:49:09,291] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:49:09,291] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:49:09,294] DEBUG in gpt: [0;36mDataset info prepared[0m
+[2024-12-02 11:49:09,295] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 11:49:53,167] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 11:49:53,168] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 11:49:53,168] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 11:49:53,168] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 11:49:53,171] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 11:49:53,173] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 11:49:53,174] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 11:49:53,175] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 11:49:53,175] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 11:49:53,175] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 11:49:53,175] DEBUG in routes: [0;36mPreparing data for chart: Trend sprzedaży[0m
+[2024-12-02 11:49:53,175] DEBUG in routes: [0;36mPreparing data for chart: Wydajność per kategoria[0m
+[2024-12-02 11:49:53,176] DEBUG in routes: [0;36mPreparing data for chart: Udział zysków per kategoria[0m
+[2024-12-02 11:49:53,176] DEBUG in routes: [0;36mPreparing data for chart: Zyskowność per kategoria[0m
+[2024-12-02 11:49:53,177] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 11:49:53,183] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:49:53,183] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:49:53,184] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:49:53,184] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:49:53,184] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:49:53,185] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:49:53,187] DEBUG in gpt: [0;36mDataset info prepared[0m
+[2024-12-02 11:49:53,187] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 11:50:14,766] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 11:50:14,767] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 11:50:14,767] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 11:50:14,767] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 11:50:14,768] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 11:50:14,768] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 11:50:14,769] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 11:50:14,769] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 11:50:14,769] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 11:50:14,769] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 11:50:14,769] DEBUG in routes: [0;36mPreparing data for chart: Zmiana sprzedaży i zysku w czasie[0m
+[2024-12-02 11:50:14,770] DEBUG in routes: [0;36mPreparing data for chart: Porównanie sprzedaży między kategoriami[0m
+[2024-12-02 11:50:14,770] DEBUG in routes: [0;36mPreparing data for chart: Rozkład zysku według kategorii[0m
+[2024-12-02 11:50:14,770] DEBUG in routes: [0;36mPreparing data for chart: Porównanie zysków między kategoriami[0m
+[2024-12-02 11:50:14,771] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 11:50:14,775] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:50:14,775] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:50:14,775] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:50:14,776] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:50:14,776] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:50:14,776] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:50:14,778] DEBUG in gpt: [0;36mDataset info prepared[0m
+[2024-12-02 11:50:14,779] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 11:51:10,884] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 11:51:10,885] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 11:51:10,885] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 11:51:10,885] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 11:51:10,887] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 11:51:10,888] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 11:51:10,890] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 11:51:10,891] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 11:51:10,891] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 11:51:10,891] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 11:51:10,891] DEBUG in routes: [0;36mPreparing data for chart: Sprzedaż i zyski w czasie[0m
+[2024-12-02 11:51:10,893] DEBUG in routes: [0;36mPreparing data for chart: Sprzedaż i zyski per kategoria[0m
+[2024-12-02 11:51:10,894] DEBUG in routes: [0;36mPreparing data for chart: Rozkład sprzedaży per kategoria[0m
+[2024-12-02 11:51:10,895] DEBUG in routes: [0;36mPreparing data for chart: Rozkład zysków per kategoria[0m
+[2024-12-02 11:51:10,896] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 11:51:10,903] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:51:10,903] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:51:10,903] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:51:10,905] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:51:10,905] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:51:10,905] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:51:10,908] DEBUG in gpt: [0;36mDataset info prepared[0m
+[2024-12-02 11:51:10,908] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 11:51:58,064] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 11:51:58,065] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 11:51:58,065] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 11:51:58,065] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 11:51:58,069] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 11:51:58,070] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 11:51:58,071] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 11:51:58,071] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 11:51:58,072] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 11:51:58,072] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 11:51:58,072] DEBUG in routes: [0;36mPreparing data for chart: Trend sprzedaży i zysków[0m
+[2024-12-02 11:51:58,073] DEBUG in routes: [0;36mPreparing data for chart: Porównanie sprzedaży i zysków po kategoriach[0m
+[2024-12-02 11:51:58,073] DEBUG in routes: [0;36mPreparing data for chart: Udział kategorii produktów w sprzedaży[0m
+[2024-12-02 11:51:58,074] DEBUG in routes: [0;36mPreparing data for chart: Porównanie dni sprzedaży[0m
+[2024-12-02 11:51:58,074] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 11:51:58,084] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:51:58,084] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:51:58,084] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:51:58,086] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:51:58,086] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:51:58,086] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:51:58,089] DEBUG in gpt: [0;36mDataset info prepared[0m
+[2024-12-02 11:51:58,089] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 11:52:58,042] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 11:52:58,043] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 11:52:58,043] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 11:52:58,043] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 11:52:58,045] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 11:52:58,046] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 11:52:58,046] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 11:52:58,047] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 11:52:58,048] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 11:52:58,048] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 11:52:58,048] DEBUG in routes: [0;36mPreparing data for chart: Trendy sprzedaży i zysków[0m
+[2024-12-02 11:52:58,049] DEBUG in routes: [0;36mPreparing data for chart: Kategorie produktów i ich wpływ na sprzedaż[0m
+[2024-12-02 11:52:58,049] DEBUG in routes: [0;36mPreparing data for chart: Rozkład zysków między kategorią produktów[0m
+[2024-12-02 11:52:58,050] DEBUG in routes: [0;36mPreparing data for chart: Rozkład sprzedaży względem dat[0m
+[2024-12-02 11:52:58,051] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 11:52:59,291] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:52:59,291] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:52:59,291] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:52:59,292] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:52:59,292] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:52:59,292] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:52:59,295] DEBUG in gpt: [0;36mData preparation took 0.00 seconds[0m
+[2024-12-02 11:52:59,295] INFO in gpt: [0;32mSending request to OpenAI API using model: gpt-4[0m
+[2024-12-02 11:52:59,296] ERROR in gpt: [0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:52:59,297] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:52:59,297] ERROR in routes: [0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:52:59,298] WARNING in logger: [0;33mHTTP 400: 500: An unexpected error occurred during analysis[0m
+[2024-12-02 11:52:59,299] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:52:59,299] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:52:59,299] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:52:59,300] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:52:59,300] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:52:59,300] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:52:59,302] DEBUG in gpt: [0;36mData preparation took 0.00 seconds[0m
+[2024-12-02 11:52:59,302] INFO in gpt: [0;32mSending request to OpenAI API using model: gpt-4[0m
+[2024-12-02 11:52:59,302] ERROR in gpt: [0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:52:59,303] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:52:59,304] ERROR in routes: [0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:52:59,305] WARNING in logger: [0;33mHTTP 400: 500: An unexpected error occurred during analysis[0m
+[2024-12-02 11:54:12,913] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:54:12,914] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:54:12,914] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:54:12,916] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:54:12,916] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:54:12,917] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:54:12,921] DEBUG in gpt: [0;36mData preparation took 0.00 seconds[0m
+[2024-12-02 11:54:12,921] INFO in gpt: [0;32mSending request to OpenAI API using model: gpt-4[0m
+[2024-12-02 11:54:12,921] ERROR in gpt: [0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:12,922] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:12,922] ERROR in routes: [0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:54:12,923] WARNING in logger: [0;33mHTTP 400: 500: An unexpected error occurred during analysis[0m
+[2024-12-02 11:54:12,925] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:54:12,925] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:54:12,925] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:54:12,926] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:54:12,926] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:54:12,927] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:54:12,929] DEBUG in gpt: [0;36mData preparation took 0.00 seconds[0m
+[2024-12-02 11:54:12,929] INFO in gpt: [0;32mSending request to OpenAI API using model: gpt-4[0m
+[2024-12-02 11:54:12,929] ERROR in gpt: [0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:12,930] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:12,931] ERROR in routes: [0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:54:12,932] WARNING in logger: [0;33mHTTP 400: 500: An unexpected error occurred during analysis[0m
+[2024-12-02 11:54:28,234] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:54:28,234] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:54:28,234] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:54:28,237] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:54:28,237] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:54:28,237] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:54:28,241] DEBUG in gpt: [0;36mData preparation took 0.00 seconds[0m
+[2024-12-02 11:54:28,242] INFO in gpt: [0;32mSending request to OpenAI API using model: gpt-4[0m
+[2024-12-02 11:54:28,242] ERROR in gpt: [0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:28,243] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:28,243] ERROR in routes: [0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:54:28,244] WARNING in logger: [0;33mHTTP 400: 500: An unexpected error occurred during analysis[0m
+[2024-12-02 11:54:28,245] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:54:28,245] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:54:28,246] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:54:28,248] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:54:28,248] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:54:28,248] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:54:28,250] DEBUG in gpt: [0;36mData preparation took 0.00 seconds[0m
+[2024-12-02 11:54:28,250] INFO in gpt: [0;32mSending request to OpenAI API using model: gpt-4[0m
+[2024-12-02 11:54:28,250] ERROR in gpt: [0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:28,251] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:28,252] ERROR in routes: [0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:54:28,253] WARNING in logger: [0;33mHTTP 400: 500: An unexpected error occurred during analysis[0m
+[2024-12-02 11:55:51,531] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:55:51,531] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:55:51,532] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:55:51,538] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:55:51,539] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:55:51,539] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:55:51,546] DEBUG in gpt: [0;36mData preparation took 0.01 seconds[0m
+[2024-12-02 11:55:51,546] INFO in gpt: [0;32mSending request to OpenAI API using model: gpt-4[0m
+[2024-12-02 11:55:51,546] ERROR in gpt: [0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:55:51,548] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:55:51,549] ERROR in routes: [0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:55:51,551] WARNING in logger: [0;33mHTTP 400: 500: An unexpected error occurred during analysis[0m
+[2024-12-02 11:55:51,552] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:55:51,552] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:55:51,552] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:55:51,554] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:55:51,554] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:55:51,554] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:55:51,557] DEBUG in gpt: [0;36mData preparation took 0.00 seconds[0m
+[2024-12-02 11:55:51,557] INFO in gpt: [0;32mSending request to OpenAI API using model: gpt-4[0m
+[2024-12-02 11:55:51,558] ERROR in gpt: [0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:55:51,558] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:55:51,559] ERROR in routes: [0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:55:51,560] WARNING in logger: [0;33mHTTP 400: 500: An unexpected error occurred during analysis[0m
+[2024-12-02 11:55:56,708] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:55:56,708] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:55:56,708] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:55:56,711] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:55:56,711] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:55:56,711] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:55:56,715] DEBUG in gpt: [0;36mData preparation took 0.00 seconds[0m
+[2024-12-02 11:55:56,715] INFO in gpt: [0;32mSending request to OpenAI API using model: gpt-4[0m
+[2024-12-02 11:55:56,715] ERROR in gpt: [0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:55:56,716] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:55:56,717] ERROR in routes: [0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:55:56,718] WARNING in logger: [0;33mHTTP 400: 500: An unexpected error occurred during analysis[0m
+[2024-12-02 11:56:37,730] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:56:37,732] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:56:37,732] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:56:37,735] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:56:37,736] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:56:37,736] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:56:37,742] DEBUG in gpt: [0;36mData preparation took 0.01 seconds[0m
+[2024-12-02 11:56:37,742] INFO in gpt: [0;32mSending request to OpenAI API using model: gpt-4[0m
+[2024-12-02 11:56:37,742] ERROR in gpt: [0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:56:37,744] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:56:37,745] ERROR in routes: [0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:56:37,746] WARNING in logger: [0;33mHTTP 400: 500: An unexpected error occurred during analysis[0m
+[2024-12-02 11:56:37,748] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:56:37,748] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:56:37,749] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:56:37,750] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:56:37,750] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:56:37,750] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:56:37,754] DEBUG in gpt: [0;36mData preparation took 0.00 seconds[0m
+[2024-12-02 11:56:37,754] INFO in gpt: [0;32mSending request to OpenAI API using model: gpt-4[0m
+[2024-12-02 11:56:37,754] ERROR in gpt: [0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:56:37,756] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:56:37,758] ERROR in routes: [0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:56:37,759] WARNING in logger: [0;33mHTTP 400: 500: An unexpected error occurred during analysis[0m
+[2024-12-02 11:57:15,479] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 11:57:15,480] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 11:57:15,480] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 11:57:15,481] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 11:57:15,481] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 11:57:15,481] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 11:57:15,484] DEBUG in gpt: [0;36mData preparation took 0.00 seconds[0m
+[2024-12-02 11:57:15,485] INFO in gpt: [0;32mSending request to OpenAI API using model: gpt-4[0m
+[2024-12-02 11:57:15,485] ERROR in gpt: [0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:57:15,486] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:57:15,487] ERROR in routes: [0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:57:15,488] WARNING in logger: [0;33mHTTP 400: 500: An unexpected error occurred during analysis[0m
+[2024-12-02 12:01:58,924] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 12:01:58,925] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:01:58,925] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:01:58,930] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 12:01:58,930] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:01:58,930] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 12:01:58,934] DEBUG in gpt: [0;36mData preparation took 0.00 seconds[0m
+[2024-12-02 12:01:58,935] INFO in gpt: [0;32mSending request to OpenAI API using model: gpt-4[0m
+[2024-12-02 12:01:58,935] ERROR in gpt: [0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 12:01:58,936] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 12:01:58,937] ERROR in routes: [0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 12:01:58,937] WARNING in logger: [0;33mHTTP 400: 500: An unexpected error occurred during analysis[0m
+[2024-12-02 12:03:43,321] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 12:03:43,322] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:03:43,322] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:03:43,327] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 12:03:43,328] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:03:43,328] INFO in gpt: [0;32mStarting analysis with data shape: (5, 4)[0m
+[2024-12-02 12:03:43,329] INFO in gpt: [0;32mNumeric columns: ['sales', 'profit'][0m
+[2024-12-02 12:03:43,329] INFO in gpt: [0;32mCategorical columns: ['date', 'category'][0m
+[2024-12-02 12:03:43,333] DEBUG in gpt: [0;36mData preparation took 0.00 seconds[0m
+[2024-12-02 12:03:43,333] DEBUG in gpt: [0;36mPrepared data info: {"columns": ["date", "sales", "profit", "category"], "sample": [{"date": "2024-01-01", "sales": 1000, "profit": 200, "category": "Electronics"}, {"date": "2024-01-02", "sales": 1500, "profit": 300, "category": "Books"}, {"date": "2024-01-03", "sales": 800, "profit": 150, "category": "Electronics"}], "stats": {"sales": {"mean": 1300.0, "min": 800.0, "max": 2000.0}, "profit": {"mean": 260.0, "min": 150.0, "max": 400.0}}, "categories": {"date": 5, "category": 3}, "row_count": 5}[0m
+[2024-12-02 12:04:15,201] INFO in gpt: [0;32mReceived response from OpenAI[0m
+[2024-12-02 12:04:15,202] DEBUG in gpt: [0;36mParsed analysis: {"suggested_charts": [{"type": "line", "title": "Sales Over Time", "description": "This chart shows the trend of sales over time.", "data_columns": ["date", "sales"], "data": []}, {"type": "line", "title": "Profit Over Time", "description": "This chart shows the trend of profit over time.", "data_columns": ["date", "profit"], "data": []}, {"type": "bar", "title": "Sales by Category", "description": "This chart shows the total sales for each category.", "data_columns": ["category", "sales"], "data": []}, {"type": "bar", "title": "Profit by Category", "description": "This chart shows the total profit for each category.", "data_columns": ["category", "profit"], "data": []}], "key_insights": [{"finding": "The average sales is 1300.0 with a minimum of 800.0 and a maximum of 2000.0.", "impact": "Understanding the range and average of sales can help in setting future sales targets.", "action_steps": ["Review the sales strategy", "Set realistic sales targets"], "priority": "HIGH", "timeframe": "1-2 weeks"}, {"finding": "The average profit is 260.0 with a minimum of 150.0 and a maximum of 400.0.", "impact": "Understanding the range and average of profit can help in financial planning.", "action_steps": ["Review the pricing strategy", "Focus on high profit categories"], "priority": "HIGH", "timeframe": "1-2 weeks"}], "business_recommendations": [{"recommendation": "Focus on high profit categories to increase overall profit.", "expected_outcome": "Increase in overall profit.", "required_resources": "Marketing budget, staff training", "implementation_difficulty": "MEDIUM", "estimated_time": "1-3 months"}, {"recommendation": "Review the sales and pricing strategies to ensure they are aligned with the business goals.", "expected_outcome": "Increase in sales and profit.", "required_resources": "Management time, market research", "implementation_difficulty": "MEDIUM", "estimated_time": "1-2 months"}], "additional_analysis_suggested": ["Analyze the sales and profit trends over a longer time period.", "Analyze the sales and profit by category over time."]}[0m
+[2024-12-02 12:04:15,206] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 12:04:15,206] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:04:15,206] DEBUG in routes: [0;36mPreparing data for chart: Sales Over Time[0m
+[2024-12-02 12:04:15,207] DEBUG in routes: [0;36mPreparing data for chart: Profit Over Time[0m
+[2024-12-02 12:04:15,207] DEBUG in routes: [0;36mPreparing data for chart: Sales by Category[0m
+[2024-12-02 12:04:15,207] DEBUG in routes: [0;36mPreparing data for chart: Profit by Category[0m
+[2024-12-02 12:04:15,208] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:11:58,375] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 12:11:58,376] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:11:58,376] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:11:58,380] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 12:11:58,381] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:11:58,381] INFO in gpt: [0;32mStarting analysis with data shape: (5, 4)[0m
+[2024-12-02 12:12:16,529] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:12:16,530] DEBUG in routes: [0;36mPreparing data for chart: Sprzedaż i zysk na przestrzeni czasu[0m
+[2024-12-02 12:12:16,530] DEBUG in routes: [0;36mPreparing data for chart: Sprzedaż według kategorii[0m
+[2024-12-02 12:12:16,531] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:12:57,089] INFO in routes: [0;32mStarting analysis for file: marketing_campaign.csv[0m
+[2024-12-02 12:12:57,090] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:12:57,090] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:12:57,093] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (24, 10)[0m
+[2024-12-02 12:12:57,093] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:12:57,094] INFO in gpt: [0;32mStarting analysis with data shape: (24, 10)[0m
+[2024-12-02 12:13:26,403] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:13:26,403] DEBUG in routes: [0;36mPreparing data for chart: Zmienność CTR w czasie[0m
+[2024-12-02 12:13:26,404] DEBUG in routes: [0;36mPreparing data for chart: Koszt na kliknięcie (CPC) w czasie[0m
+[2024-12-02 12:13:26,405] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:14:10,781] INFO in routes: [0;32mStarting analysis for file: user_conversion.csv[0m
+[2024-12-02 12:14:10,781] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:14:10,781] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:14:10,783] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (20, 4)[0m
+[2024-12-02 12:14:10,783] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:14:10,783] INFO in gpt: [0;32mStarting analysis with data shape: (20, 4)[0m
+[2024-12-02 12:14:32,768] ERROR in gpt: [0;31mFailed to parse GPT response: Expecting value: line 1 column 1 (char 0)[0m
+[2024-12-02 12:14:32,768] ERROR in gpt: [0;31mUnexpected error: 500: Failed to parse analysis results[0m
+[2024-12-02 12:14:32,769] ERROR in gpt: [0;31mTraceback: Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 114, in analyze_with_gpt
+    analysis_dict = json.loads(response.choices[0].message.content)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 143, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Failed to parse analysis results
+[0m
+[2024-12-02 12:14:32,770] ERROR in routes: [0;31mError during file analysis: 500: 500: Failed to parse analysis results[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 114, in analyze_with_gpt
+    analysis_dict = json.loads(response.choices[0].message.content)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 143, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Failed to parse analysis results
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 28, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 158, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: 500: Failed to parse analysis results
+[2024-12-02 12:14:32,770] WARNING in logger: [0;33mHTTP 400: 500: 500: Failed to parse analysis results[0m
+[2024-12-02 12:14:53,922] INFO in routes: [0;32mStarting analysis for file: user_conversion.csv[0m
+[2024-12-02 12:14:53,922] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:14:53,923] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:14:53,924] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (20, 4)[0m
+[2024-12-02 12:14:53,924] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:14:53,924] INFO in gpt: [0;32mStarting analysis with data shape: (20, 4)[0m
+[2024-12-02 12:15:22,894] ERROR in gpt: [0;31mFailed to parse GPT response: Expecting value: line 1 column 1 (char 0)[0m
+[2024-12-02 12:15:22,896] ERROR in gpt: [0;31mUnexpected error: 500: Failed to parse analysis results[0m
+[2024-12-02 12:15:22,896] ERROR in gpt: [0;31mTraceback: Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 114, in analyze_with_gpt
+    analysis_dict = json.loads(response.choices[0].message.content)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 143, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Failed to parse analysis results
+[0m
+[2024-12-02 12:15:22,896] ERROR in routes: [0;31mError during file analysis: 500: 500: Failed to parse analysis results[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 114, in analyze_with_gpt
+    analysis_dict = json.loads(response.choices[0].message.content)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 143, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Failed to parse analysis results
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 28, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 158, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: 500: Failed to parse analysis results
+[2024-12-02 12:15:22,897] WARNING in logger: [0;33mHTTP 400: 500: 500: Failed to parse analysis results[0m
+[2024-12-02 12:18:27,269] INFO in routes: [0;32mStarting analysis for file: marketing_campaign.csv[0m
+[2024-12-02 12:18:27,269] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:18:27,269] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:18:27,271] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (24, 10)[0m
+[2024-12-02 12:18:27,271] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:18:27,271] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 12:18:27,283] DEBUG in gpt: [0;36mDataset info prepared. Columns: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS[0m
+[2024-12-02 12:18:27,283] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 12:19:00,158] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 12:19:00,159] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 12:19:00,159] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 12:19:00,159] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 12:19:00,161] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:19:00,161] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 12:19:00,162] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:19:00,162] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:19:00,162] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 12:19:00,162] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:19:00,162] DEBUG in routes: [0;36mPreparing data for chart: Koszt kampanii w czasie[0m
+[2024-12-02 12:19:00,163] DEBUG in routes: [0;36mPreparing data for chart: Porównanie CTR kampanii[0m
+[2024-12-02 12:19:00,163] DEBUG in routes: [0;36mPreparing data for chart: Rozkład kliknięć pomiędzy kampanie[0m
+[2024-12-02 12:19:00,164] DEBUG in routes: [0;36mPreparing data for chart: Średnia Ilość Wyświetlenia na Klinięcie (IVC)[0m
+[2024-12-02 12:19:00,164] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:20:06,493] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 12:20:06,493] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:20:06,493] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:20:06,494] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 12:20:06,495] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:20:06,495] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 12:20:06,500] DEBUG in gpt: [0;36mDataset info prepared. Columns: date, sales, profit, category[0m
+[2024-12-02 12:20:06,500] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 12:20:41,905] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 12:20:41,906] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 12:20:41,906] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 12:20:41,906] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 12:20:41,907] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:20:41,907] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 12:20:41,908] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:20:41,908] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:20:41,908] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 12:20:41,908] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:20:41,908] DEBUG in routes: [0;36mPreparing data for chart: Zmiana sprzedaży i zysku w czasie[0m
+[2024-12-02 12:20:41,909] DEBUG in routes: [0;36mPreparing data for chart: Porównanie sprzedaży między kategoriami[0m
+[2024-12-02 12:20:41,909] DEBUG in routes: [0;36mPreparing data for chart: Rozkład sprzedaży między kategoriami[0m
+[2024-12-02 12:20:41,909] DEBUG in routes: [0;36mPreparing data for chart: Porównanie zysku między kategoriami[0m
+[2024-12-02 12:20:41,910] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:23:36,434] INFO in routes: [0;32mStarting analysis for file: marketing_campaign.csv[0m
+[2024-12-02 12:23:36,434] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:23:36,435] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:23:36,437] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (24, 10)[0m
+[2024-12-02 12:23:36,437] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:23:36,438] INFO in gpt: [0;32mPreprocessing data with company name normalization[0m
+[2024-12-02 12:23:36,438] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 'company'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 153, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 182, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'company'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 73, in analyze_with_gpt
+    processed_df = preprocess_data(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 49, in preprocess_data
+    processed_df['normalized_company'] = processed_df['company'].apply(normalize_company_name)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4090, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3809, in get_loc
+    raise KeyError(key) from err
+KeyError: 'company'
+[2024-12-02 12:23:36,442] ERROR in routes: [0;31mError during file analysis: 'company'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 153, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 182, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'company'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 73, in analyze_with_gpt
+    processed_df = preprocess_data(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 49, in preprocess_data
+    processed_df['normalized_company'] = processed_df['company'].apply(normalize_company_name)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4090, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3809, in get_loc
+    raise KeyError(key) from err
+KeyError: 'company'
+[2024-12-02 12:23:36,444] WARNING in logger: [0;33mHTTP 400: 'company'[0m
+[2024-12-02 12:25:02,715] INFO in routes: [0;32mStarting analysis for file: marketing_campaign.csv[0m
+[2024-12-02 12:25:02,716] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:25:02,716] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:25:02,723] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (24, 10)[0m
+[2024-12-02 12:25:02,723] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:25:02,723] INFO in gpt: [0;32mStarting data analysis[0m
+[2024-12-02 12:25:02,723] DEBUG in gpt: [0;36mInput DataFrame columns: ['Campaign_Name', 'Date', 'Impressions', 'Clicks', 'Cost', 'Conversions', 'Conversion_Value', 'CTR', 'CPC', 'ROAS'][0m
+[2024-12-02 12:25:02,723] ERROR in gpt: [0;31mError in preprocess_data: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 69, in preprocess_data
+    company_col = get_company_column(processed_df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 56, in get_company_column
+    raise ValueError(
+ValueError: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS
+[2024-12-02 12:25:02,724] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 400: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 69, in preprocess_data
+    company_col = get_company_column(processed_df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 56, in get_company_column
+    raise ValueError(
+ValueError: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 117, in analyze_with_gpt
+    processed_df = preprocess_data(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 106, in preprocess_data
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS
+[2024-12-02 12:25:02,724] ERROR in routes: [0;31mError during file analysis: 400: 400: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 69, in preprocess_data
+    company_col = get_company_column(processed_df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 56, in get_company_column
+    raise ValueError(
+ValueError: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 117, in analyze_with_gpt
+    processed_df = preprocess_data(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 106, in preprocess_data
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 244, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: 400: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS
+[2024-12-02 12:25:02,726] WARNING in logger: [0;33mHTTP 400: 400: 400: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS[0m
+[2024-12-02 12:28:00,287] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 12:28:00,287] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:28:00,287] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:28:00,291] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 12:28:00,291] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:28:00,292] INFO in gpt: [0;32mStarting data analysis[0m
+[2024-12-02 12:28:00,292] DEBUG in gpt: [0;36mInput DataFrame columns: ['date', 'sales', 'profit', 'category'][0m
+[2024-12-02 12:28:00,293] INFO in gpt: [0;32mUsing 'date' as key column (type: date)[0m
+[2024-12-02 12:28:00,301] INFO in gpt: [0;32mData preprocessing completed successfully[0m
+[2024-12-02 12:28:00,303] DEBUG in gpt: [0;36mDataset info prepared. Columns: date, sales, profit, category[0m
+[2024-12-02 12:28:00,303] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 12:28:14,707] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 12:28:14,708] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 12:28:14,708] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 12:28:14,708] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 12:28:14,709] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:28:14,710] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 12:28:14,711] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:28:14,711] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:28:14,711] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 12:28:14,711] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:28:14,712] DEBUG in routes: [0;36mPreparing data for chart: Sales and Profit Over Time[0m
+[2024-12-02 12:28:14,712] DEBUG in routes: [0;36mPreparing data for chart: Total Sales by Category[0m
+[2024-12-02 12:28:14,713] DEBUG in routes: [0;36mPreparing data for chart: Sales Distribution by Category[0m
+[2024-12-02 12:28:14,713] DEBUG in routes: [0;36mPreparing data for chart: Total Profit by Category[0m
+[2024-12-02 12:28:14,714] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:29:04,783] INFO in routes: [0;32mStarting analysis for file: user_conversion.csv[0m
+[2024-12-02 12:29:04,783] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:29:04,784] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:29:04,785] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (20, 4)[0m
+[2024-12-02 12:29:04,785] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:29:04,785] INFO in gpt: [0;32mStarting data analysis[0m
+[2024-12-02 12:29:04,785] DEBUG in gpt: [0;36mInput DataFrame columns: ['user_id', 'last_login', 'purchase_amount', 'items_in_cart'][0m
+[2024-12-02 12:29:04,785] INFO in gpt: [0;32mUsing 'user_id' as key column (type: identifier)[0m
+[2024-12-02 12:29:04,798] INFO in gpt: [0;32mData preprocessing completed successfully[0m
+[2024-12-02 12:29:04,822] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: cannot convert the series to <class 'int'>[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 155, in analyze_with_gpt
+    'stats': {
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 159, in <dictcomp>
+    'count': int(processed_df[col].count())
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/series.py", line 247, in wrapper
+    raise TypeError(f"cannot convert the series to {converter}")
+TypeError: cannot convert the series to <class 'int'>
+[2024-12-02 12:29:04,829] ERROR in routes: [0;31mError during file analysis: 400: cannot convert the series to <class 'int'>[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 155, in analyze_with_gpt
+    'stats': {
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 159, in <dictcomp>
+    'count': int(processed_df[col].count())
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/series.py", line 247, in wrapper
+    raise TypeError(f"cannot convert the series to {converter}")
+TypeError: cannot convert the series to <class 'int'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 274, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: cannot convert the series to <class 'int'>
+[2024-12-02 12:29:04,837] WARNING in logger: [0;33mHTTP 400: 400: cannot convert the series to <class 'int'>[0m
+[2024-12-02 12:29:10,968] INFO in routes: [0;32mStarting analysis for file: marketing_campaign.csv[0m
+[2024-12-02 12:29:10,968] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:29:10,968] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:29:10,969] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (24, 10)[0m
+[2024-12-02 12:29:10,969] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:29:10,970] INFO in gpt: [0;32mStarting data analysis[0m
+[2024-12-02 12:29:10,970] DEBUG in gpt: [0;36mInput DataFrame columns: ['Campaign_Name', 'Date', 'Impressions', 'Clicks', 'Cost', 'Conversions', 'Conversion_Value', 'CTR', 'CPC', 'ROAS'][0m
+[2024-12-02 12:29:10,970] INFO in gpt: [0;32mUsing 'Campaign_Name' as key column (type: name)[0m
+[2024-12-02 12:29:10,976] INFO in gpt: [0;32mData preprocessing completed successfully[0m
+[2024-12-02 12:29:10,977] DEBUG in gpt: [0;36mDataset info prepared. Columns: Campaign_Name, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS, Date[0m
+[2024-12-02 12:29:10,978] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 12:29:39,606] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 12:29:39,607] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 12:29:39,607] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 12:29:39,607] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 12:29:39,608] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:29:39,608] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 12:29:39,608] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:29:39,609] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:29:39,609] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 12:29:39,609] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:29:39,609] DEBUG in routes: [0;36mPreparing data for chart: Trend of Impressions, Clicks, and Conversions Over Time[0m
+[2024-12-02 12:29:39,610] DEBUG in routes: [0;36mPreparing data for chart: Cost by Campaign[0m
+[2024-12-02 12:29:39,610] DEBUG in routes: [0;36mPreparing data for chart: Distribution of Click-through Rates (CTR) by Campaign[0m
+[2024-12-02 12:29:39,610] DEBUG in routes: [0;36mPreparing data for chart: Return on Advertising Spend (ROAS) by Campaign[0m
+[2024-12-02 12:29:39,611] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:29:49,767] INFO in routes: [0;32mStarting analysis for file: user_conversion.csv[0m
+[2024-12-02 12:29:49,767] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:29:49,767] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:29:49,768] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (20, 4)[0m
+[2024-12-02 12:29:49,768] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:29:49,769] INFO in gpt: [0;32mStarting data analysis[0m
+[2024-12-02 12:29:49,769] DEBUG in gpt: [0;36mInput DataFrame columns: ['user_id', 'last_login', 'purchase_amount', 'items_in_cart'][0m
+[2024-12-02 12:29:49,769] INFO in gpt: [0;32mUsing 'user_id' as key column (type: identifier)[0m
+[2024-12-02 12:29:49,778] INFO in gpt: [0;32mData preprocessing completed successfully[0m
+[2024-12-02 12:29:49,782] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: cannot convert the series to <class 'int'>[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 155, in analyze_with_gpt
+    'stats': {
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 159, in <dictcomp>
+    'count': int(processed_df[col].count())
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/series.py", line 247, in wrapper
+    raise TypeError(f"cannot convert the series to {converter}")
+TypeError: cannot convert the series to <class 'int'>
+[2024-12-02 12:29:49,782] ERROR in routes: [0;31mError during file analysis: 400: cannot convert the series to <class 'int'>[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 155, in analyze_with_gpt
+    'stats': {
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 159, in <dictcomp>
+    'count': int(processed_df[col].count())
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/series.py", line 247, in wrapper
+    raise TypeError(f"cannot convert the series to {converter}")
+TypeError: cannot convert the series to <class 'int'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 274, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: cannot convert the series to <class 'int'>
+[2024-12-02 12:29:49,782] WARNING in logger: [0;33mHTTP 400: 400: cannot convert the series to <class 'int'>[0m
+[2024-12-02 12:31:50,169] INFO in routes: [0;32mStarting analysis for file: user_conversion.csv[0m
+[2024-12-02 12:31:50,169] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:31:50,170] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:31:50,174] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (20, 4)[0m
+[2024-12-02 12:31:50,174] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:31:50,174] INFO in gpt: [0;32mStarting data analysis[0m
+[2024-12-02 12:31:50,174] INFO in gpt: [0;32mOriginal DataFrame columns: ['user_id', 'last_login', 'purchase_amount', 'items_in_cart'][0m
+[2024-12-02 12:31:50,175] INFO in gpt: [0;32mOriginal DataFrame types:
+user_id              int64
+last_login          object
+purchase_amount    float64
+items_in_cart        int64
+dtype: object[0m
+[2024-12-02 12:31:50,175] INFO in gpt: [0;32mCleaned column names: ['user_id', 'last_login', 'purchase_amount', 'items_in_cart'][0m
+[2024-12-02 12:31:50,181] INFO in gpt: [0;32mInferred types:
+user_id                     int64
+last_login         datetime64[ns]
+purchase_amount           float64
+items_in_cart               int64
+dtype: object[0m
+[2024-12-02 12:31:50,185] DEBUG in gpt: [0;36mDataset info prepared. Columns: user_id, last_login, purchase_amount, items_in_cart[0m
+[2024-12-02 12:31:50,185] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: Object of type Timestamp is not JSON serializable[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 128, in analyze_with_gpt
+    {json.dumps(data_info, indent=2)}
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 325, in _iterencode_list
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Timestamp is not JSON serializable
+[2024-12-02 12:31:50,186] ERROR in routes: [0;31mError during file analysis: 400: Object of type Timestamp is not JSON serializable[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 128, in analyze_with_gpt
+    {json.dumps(data_info, indent=2)}
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 325, in _iterencode_list
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Timestamp is not JSON serializable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 244, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: Object of type Timestamp is not JSON serializable
+[2024-12-02 12:31:50,187] WARNING in logger: [0;33mHTTP 400: 400: Object of type Timestamp is not JSON serializable[0m
+[2024-12-02 12:33:04,183] INFO in routes: [0;32mStarting analysis for file: user_conversion.csv[0m
+[2024-12-02 12:33:04,183] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:33:04,183] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:33:04,188] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (20, 4)[0m
+[2024-12-02 12:33:04,188] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:33:04,188] INFO in gpt: [0;32mStarting data analysis[0m
+[2024-12-02 12:33:04,188] INFO in gpt: [0;32mOriginal DataFrame columns: ['user_id', 'last_login', 'purchase_amount', 'items_in_cart'][0m
+[2024-12-02 12:33:04,190] INFO in gpt: [0;32mOriginal DataFrame types:
+user_id              int64
+last_login          object
+purchase_amount    float64
+items_in_cart        int64
+dtype: object[0m
+[2024-12-02 12:33:04,190] INFO in gpt: [0;32mCleaned column names: ['user_id', 'last_login', 'purchase_amount', 'items_in_cart'][0m
+[2024-12-02 12:33:04,193] INFO in gpt: [0;32mInferred types:
+user_id                     int64
+last_login         datetime64[ns]
+purchase_amount           float64
+items_in_cart               int64
+dtype: object[0m
+[2024-12-02 12:33:04,196] DEBUG in gpt: [0;36mDataset info prepared. Columns: user_id, last_login, purchase_amount, items_in_cart[0m
+[2024-12-02 12:33:04,196] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 12:33:27,956] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 12:33:27,956] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 12:33:27,957] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 12:33:27,957] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 12:33:27,959] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:33:27,959] ERROR in gpt: [0;31mMissing column in DataFrame: 'count'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 153, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 182, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'count'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 226, in analyze_with_gpt
+    if pd.api.types.is_datetime64_dtype(chart_df[col]):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4090, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3809, in get_loc
+    raise KeyError(key) from err
+KeyError: 'count'
+[2024-12-02 12:33:27,963] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: Column not found in data: 'count'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 153, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 182, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'count'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 226, in analyze_with_gpt
+    if pd.api.types.is_datetime64_dtype(chart_df[col]):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4090, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3809, in get_loc
+    raise KeyError(key) from err
+KeyError: 'count'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 248, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Column not found in data: 'count'
+[2024-12-02 12:33:27,964] ERROR in routes: [0;31mError during file analysis: 400: 500: Column not found in data: 'count'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 153, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 182, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'count'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 226, in analyze_with_gpt
+    if pd.api.types.is_datetime64_dtype(chart_df[col]):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4090, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3809, in get_loc
+    raise KeyError(key) from err
+KeyError: 'count'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 248, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Column not found in data: 'count'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 264, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: 500: Column not found in data: 'count'
+[2024-12-02 12:33:27,964] WARNING in logger: [0;33mHTTP 400: 400: 500: Column not found in data: 'count'[0m
+[2024-12-02 12:34:04,238] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 12:34:04,239] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:34:04,239] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:34:04,242] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 12:34:04,243] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:34:04,243] INFO in gpt: [0;32mStarting data analysis[0m
+[2024-12-02 12:34:04,243] INFO in gpt: [0;32mOriginal DataFrame columns: ['date', 'sales', 'profit', 'category'][0m
+[2024-12-02 12:34:04,243] INFO in gpt: [0;32mOriginal DataFrame types:
+date        object
+sales        int64
+profit       int64
+category    object
+dtype: object[0m
+[2024-12-02 12:34:04,243] INFO in gpt: [0;32mCleaned column names: ['date', 'sales', 'profit', 'category'][0m
+[2024-12-02 12:34:04,250] INFO in gpt: [0;32mInferred types:
+date        datetime64[ns]
+sales                int64
+profit               int64
+category            object
+dtype: object[0m
+[2024-12-02 12:34:04,251] DEBUG in gpt: [0;36mDataset info prepared. Columns: date, sales, profit, category[0m
+[2024-12-02 12:34:04,251] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 12:34:26,956] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 12:34:26,957] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 12:34:26,958] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 12:34:26,958] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 12:34:26,962] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:34:26,963] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 12:34:26,964] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:34:26,965] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:34:26,965] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 12:34:26,965] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:34:26,965] DEBUG in routes: [0;36mPreparing data for chart: Trend of Sales and Profit Over Time[0m
+[2024-12-02 12:34:26,965] DEBUG in routes: [0;36mPreparing data for chart: Total Sales and Profit by Category[0m
+[2024-12-02 12:34:26,966] DEBUG in routes: [0;36mPreparing data for chart: Proportion of Sales by Category[0m
+[2024-12-02 12:34:26,966] DEBUG in routes: [0;36mPreparing data for chart: Average Sales and Profit by Category[0m
+[2024-12-02 12:34:26,967] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:35:08,899] INFO in routes: [0;32mStarting analysis for file: user_conversion.csv[0m
+[2024-12-02 12:35:08,899] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:35:08,899] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:35:08,905] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (20, 4)[0m
+[2024-12-02 12:35:08,905] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:35:08,905] INFO in gpt: [0;32mStarting data analysis[0m
+[2024-12-02 12:35:08,912] INFO in gpt: [0;32mNumeric columns: ['user_id', 'purchase_amount', 'items_in_cart'][0m
+[2024-12-02 12:35:08,912] INFO in gpt: [0;32mDate columns: ['last_login'][0m
+[2024-12-02 12:35:08,912] INFO in gpt: [0;32mCategorical columns: [][0m
+[2024-12-02 12:35:08,916] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 12:35:32,030] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 12:35:32,030] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 12:35:32,030] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 12:35:32,030] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 12:35:32,034] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:35:32,035] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 12:35:32,036] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:35:32,038] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:35:32,038] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 12:35:32,038] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:35:32,038] DEBUG in routes: [0;36mPreparing data for chart: Trend zakupów w czasie[0m
+[2024-12-02 12:35:32,040] DEBUG in routes: [0;36mPreparing data for chart: Średnia wartość zakupów użytkowników[0m
+[2024-12-02 12:35:32,040] DEBUG in routes: [0;36mPreparing data for chart: Rozkład ilości przedmiotów w koszyku[0m
+[2024-12-02 12:35:32,041] DEBUG in routes: [0;36mPreparing data for chart: Suma zakupów w danym okresie[0m
+[2024-12-02 12:35:32,042] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:35:39,401] INFO in routes: [0;32mStarting analysis for file: marketing_campaign.csv[0m
+[2024-12-02 12:35:39,402] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:35:39,402] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:35:39,403] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (24, 10)[0m
+[2024-12-02 12:35:39,403] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:35:39,403] INFO in gpt: [0;32mStarting data analysis[0m
+[2024-12-02 12:35:39,408] INFO in gpt: [0;32mNumeric columns: ['impressions', 'clicks', 'cost', 'conversions', 'conversion_value', 'ctr', 'cpc', 'roas'][0m
+[2024-12-02 12:35:39,408] INFO in gpt: [0;32mDate columns: ['date'][0m
+[2024-12-02 12:35:39,408] INFO in gpt: [0;32mCategorical columns: ['campaign_name'][0m
+[2024-12-02 12:35:39,413] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 12:36:09,357] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 12:36:09,358] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 12:36:09,358] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 12:36:09,358] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 12:36:09,360] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:36:09,363] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 12:36:09,364] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:36:09,366] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:36:09,366] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 12:36:09,367] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:36:09,367] DEBUG in routes: [0;36mPreparing data for chart: Trend kliknięć w czasie[0m
+[2024-12-02 12:36:09,367] ERROR in routes: [0;31mError during file analysis: "None of [Index(['date', 'clicks'], dtype='object')] are in the [columns]"[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 36, in analyze_file
+    chart["data"] = prepare_chart_data(df, chart)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/data.py", line 9, in prepare_chart_data
+    return df[chart_config["data_columns"]].to_dict('records')
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4096, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6199, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6248, in _raise_if_missing
+    raise KeyError(f"None of [{key}] are in the [{axis_name}]")
+KeyError: "None of [Index(['date', 'clicks'], dtype='object')] are in the [columns]"
+[2024-12-02 12:36:09,381] WARNING in logger: [0;33mHTTP 400: "None of [Index(['date', 'clicks'], dtype='object')] are in the [columns]"[0m
+[2024-12-02 12:36:40,219] INFO in routes: [0;32mStarting analysis for file: user_conversion.csv[0m
+[2024-12-02 12:36:40,219] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:36:40,219] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:36:40,221] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (20, 4)[0m
+[2024-12-02 12:36:40,221] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:36:40,221] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 12:36:40,226] DEBUG in gpt: [0;36mDataset info prepared. Columns: user_id, last_login, purchase_amount, items_in_cart[0m
+[2024-12-02 12:36:40,227] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 12:37:15,604] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 12:37:15,604] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 12:37:15,604] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 12:37:15,604] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 12:37:15,606] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:37:15,606] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 12:37:15,607] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:37:15,607] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:37:15,607] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 12:37:15,607] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:37:15,608] DEBUG in routes: [0;36mPreparing data for chart: Trend kwoty zakupów w czasie[0m
+[2024-12-02 12:37:15,608] DEBUG in routes: [0;36mPreparing data for chart: Porównanie liczby produktów w koszyku[0m
+[2024-12-02 12:37:15,608] DEBUG in routes: [0;36mPreparing data for chart: Rozkład kwoty zakupów[0m
+[2024-12-02 12:37:15,609] DEBUG in routes: [0;36mPreparing data for chart: Porównanie liczby produktów w koszyku do kwoty zakupów[0m
+[2024-12-02 12:37:15,609] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:37:33,296] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 12:37:33,296] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:37:33,296] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:37:33,298] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 12:37:33,298] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:37:33,298] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 12:37:33,302] DEBUG in gpt: [0;36mDataset info prepared. Columns: date, sales, profit, category[0m
+[2024-12-02 12:37:33,302] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 12:38:15,915] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 12:38:15,915] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 12:38:15,915] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 12:38:15,915] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 12:38:15,916] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:38:15,917] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 12:38:15,917] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:38:15,917] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:38:15,917] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 12:38:15,917] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:38:15,918] DEBUG in routes: [0;36mPreparing data for chart: Sprzedaż i zysk w czasie[0m
+[2024-12-02 12:38:15,918] DEBUG in routes: [0;36mPreparing data for chart: Porównanie sprzedaży w różnych kategoriach[0m
+[2024-12-02 12:38:15,919] DEBUG in routes: [0;36mPreparing data for chart: Rozkład sprzedaży według kategorii[0m
+[2024-12-02 12:38:15,919] DEBUG in routes: [0;36mPreparing data for chart: Porównanie zysków w różnych kategoriach[0m
+[2024-12-02 12:38:15,919] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:38:24,037] INFO in routes: [0;32mStarting analysis for file: marketing_campaign.csv[0m
+[2024-12-02 12:38:24,037] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:38:24,037] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:38:24,039] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (24, 10)[0m
+[2024-12-02 12:38:24,040] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:38:24,040] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 12:38:24,051] DEBUG in gpt: [0;36mDataset info prepared. Columns: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS[0m
+[2024-12-02 12:38:24,052] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 12:39:01,965] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 12:39:01,965] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 12:39:01,965] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 12:39:01,965] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 12:39:01,966] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:39:01,967] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 12:39:01,967] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:39:01,968] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:39:01,968] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 12:39:01,968] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:39:01,968] DEBUG in routes: [0;36mPreparing data for chart: Koszt kampanii a wartość konwersji w czasie[0m
+[2024-12-02 12:39:01,968] DEBUG in routes: [0;36mPreparing data for chart: Porównanie klickrate'u (CTR) i kosztu za kliknięcie (CPC) dla różnych kampanii[0m
+[2024-12-02 12:39:01,969] DEBUG in routes: [0;36mPreparing data for chart: Rozkład konwersji pomiędzy kampaniami[0m
+[2024-12-02 12:39:01,969] DEBUG in routes: [0;36mPreparing data for chart: Porównanie ROAS (zwrotu z wydatków reklamowych) różnych kampanii[0m
+[2024-12-02 12:39:01,969] INFO in routes: [0;32mAnalysis completed successfully[0m

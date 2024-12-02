@@ -1,0 +1,1091 @@
+[2024-12-02 11:22:29,009] ERROR in gpt:
+[0;31mOpenAI API error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 92, in analyze_with_gpt
+    response = client.chat.completions.create(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_utils/_utils.py", line 275, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/resources/chat/completions.py", line 829, in create
+    return self._post(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1280, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 957, in request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1046, in _request
+    return self._retry_request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1095, in _retry_request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1046, in _request
+    return self._retry_request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1095, in _retry_request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1061, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+[2024-12-02 11:22:29,016] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 402: OpenAI API quota exceeded. Please check your API credits.[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 92, in analyze_with_gpt
+    response = client.chat.completions.create(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_utils/_utils.py", line 275, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/resources/chat/completions.py", line 829, in create
+    return self._post(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1280, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 957, in request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1046, in _request
+    return self._retry_request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1095, in _retry_request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1046, in _request
+    return self._retry_request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1095, in _retry_request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1061, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 105, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 402: OpenAI API quota exceeded. Please check your API credits.
+[2024-12-02 11:22:29,019] ERROR in routes:
+[0;31mError during file analysis: 402: OpenAI API quota exceeded. Please check your API credits.[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 92, in analyze_with_gpt
+    response = client.chat.completions.create(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_utils/_utils.py", line 275, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/resources/chat/completions.py", line 829, in create
+    return self._post(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1280, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 957, in request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1046, in _request
+    return self._retry_request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1095, in _retry_request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1046, in _request
+    return self._retry_request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1095, in _retry_request
+    return self._request(
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/openai/_base_client.py", line 1061, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 105, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 402: OpenAI API quota exceeded. Please check your API credits.
+[2024-12-02 11:33:37,016] ERROR in gpt:
+[0;31mFailed to parse GPT response as JSON[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 165, in analyze_with_gpt
+    analysis = json.loads(response.choices[0].message.content)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+[2024-12-02 11:33:37,018] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: Failed to parse analysis results[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 165, in analyze_with_gpt
+    analysis = json.loads(response.choices[0].message.content)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 169, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Failed to parse analysis results
+[2024-12-02 11:33:37,019] ERROR in routes:
+[0;31mError during file analysis: 500: Failed to parse analysis results[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 165, in analyze_with_gpt
+    analysis = json.loads(response.choices[0].message.content)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 169, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Failed to parse analysis results
+[2024-12-02 11:52:59,296] ERROR in gpt:
+[0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:52:59,297] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:52:59,297] ERROR in routes:
+[0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:52:59,302] ERROR in gpt:
+[0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:52:59,303] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:52:59,304] ERROR in routes:
+[0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:54:12,921] ERROR in gpt:
+[0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:12,922] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:12,922] ERROR in routes:
+[0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:54:12,929] ERROR in gpt:
+[0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:12,930] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:12,931] ERROR in routes:
+[0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:54:28,242] ERROR in gpt:
+[0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:28,243] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:28,243] ERROR in routes:
+[0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:54:28,250] ERROR in gpt:
+[0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:28,251] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:54:28,252] ERROR in routes:
+[0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:55:51,546] ERROR in gpt:
+[0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:55:51,548] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:55:51,549] ERROR in routes:
+[0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:55:51,558] ERROR in gpt:
+[0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:55:51,558] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:55:51,559] ERROR in routes:
+[0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:55:56,715] ERROR in gpt:
+[0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:55:56,716] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:55:56,717] ERROR in routes:
+[0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:56:37,742] ERROR in gpt:
+[0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:56:37,744] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:56:37,745] ERROR in routes:
+[0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:56:37,754] ERROR in gpt:
+[0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:56:37,756] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:56:37,758] ERROR in routes:
+[0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 11:57:15,485] ERROR in gpt:
+[0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:57:15,486] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 11:57:15,487] ERROR in routes:
+[0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 12:01:58,935] ERROR in gpt:
+[0;31mOpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+[2024-12-02 12:01:58,936] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+[2024-12-02 12:01:58,937] ERROR in routes:
+[0;31mError during file analysis: 500: An unexpected error occurred during analysis[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 119, in analyze_with_gpt
+    temperature=settings.temperature,
+AttributeError: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 166, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: OpenAI API error: 'Settings' object has no attribute 'temperature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 173, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: An unexpected error occurred during analysis
+[2024-12-02 12:14:32,768] ERROR in gpt:
+[0;31mFailed to parse GPT response: Expecting value: line 1 column 1 (char 0)[0m
+
+[2024-12-02 12:14:32,768] ERROR in gpt:
+[0;31mUnexpected error: 500: Failed to parse analysis results[0m
+
+[2024-12-02 12:14:32,769] ERROR in gpt:
+[0;31mTraceback: Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 114, in analyze_with_gpt
+    analysis_dict = json.loads(response.choices[0].message.content)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 143, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Failed to parse analysis results
+[0m
+
+[2024-12-02 12:14:32,770] ERROR in routes:
+[0;31mError during file analysis: 500: 500: Failed to parse analysis results[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 114, in analyze_with_gpt
+    analysis_dict = json.loads(response.choices[0].message.content)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 143, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Failed to parse analysis results
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 28, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 158, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: 500: Failed to parse analysis results
+[2024-12-02 12:15:22,894] ERROR in gpt:
+[0;31mFailed to parse GPT response: Expecting value: line 1 column 1 (char 0)[0m
+
+[2024-12-02 12:15:22,896] ERROR in gpt:
+[0;31mUnexpected error: 500: Failed to parse analysis results[0m
+
+[2024-12-02 12:15:22,896] ERROR in gpt:
+[0;31mTraceback: Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 114, in analyze_with_gpt
+    analysis_dict = json.loads(response.choices[0].message.content)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 143, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Failed to parse analysis results
+[0m
+
+[2024-12-02 12:15:22,896] ERROR in routes:
+[0;31mError during file analysis: 500: 500: Failed to parse analysis results[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 114, in analyze_with_gpt
+    analysis_dict = json.loads(response.choices[0].message.content)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 143, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Failed to parse analysis results
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 28, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 158, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: 500: Failed to parse analysis results
+[2024-12-02 12:23:36,438] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 'company'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 153, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 182, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'company'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 73, in analyze_with_gpt
+    processed_df = preprocess_data(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 49, in preprocess_data
+    processed_df['normalized_company'] = processed_df['company'].apply(normalize_company_name)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4090, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3809, in get_loc
+    raise KeyError(key) from err
+KeyError: 'company'
+[2024-12-02 12:23:36,442] ERROR in routes:
+[0;31mError during file analysis: 'company'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 153, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 182, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'company'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 73, in analyze_with_gpt
+    processed_df = preprocess_data(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 49, in preprocess_data
+    processed_df['normalized_company'] = processed_df['company'].apply(normalize_company_name)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4090, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3809, in get_loc
+    raise KeyError(key) from err
+KeyError: 'company'
+[2024-12-02 12:25:02,723] ERROR in gpt:
+[0;31mError in preprocess_data: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 69, in preprocess_data
+    company_col = get_company_column(processed_df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 56, in get_company_column
+    raise ValueError(
+ValueError: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS
+[2024-12-02 12:25:02,724] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 400: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 69, in preprocess_data
+    company_col = get_company_column(processed_df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 56, in get_company_column
+    raise ValueError(
+ValueError: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 117, in analyze_with_gpt
+    processed_df = preprocess_data(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 106, in preprocess_data
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS
+[2024-12-02 12:25:02,724] ERROR in routes:
+[0;31mError during file analysis: 400: 400: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 69, in preprocess_data
+    company_col = get_company_column(processed_df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 56, in get_company_column
+    raise ValueError(
+ValueError: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 117, in analyze_with_gpt
+    processed_df = preprocess_data(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 106, in preprocess_data
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 244, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: 400: No company column found. Expected one of: company, company_name, organization, org, business, client. Available columns are: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS
+[2024-12-02 12:29:04,822] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: cannot convert the series to <class 'int'>[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 155, in analyze_with_gpt
+    'stats': {
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 159, in <dictcomp>
+    'count': int(processed_df[col].count())
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/series.py", line 247, in wrapper
+    raise TypeError(f"cannot convert the series to {converter}")
+TypeError: cannot convert the series to <class 'int'>
+[2024-12-02 12:29:04,829] ERROR in routes:
+[0;31mError during file analysis: 400: cannot convert the series to <class 'int'>[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 155, in analyze_with_gpt
+    'stats': {
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 159, in <dictcomp>
+    'count': int(processed_df[col].count())
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/series.py", line 247, in wrapper
+    raise TypeError(f"cannot convert the series to {converter}")
+TypeError: cannot convert the series to <class 'int'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 274, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: cannot convert the series to <class 'int'>
+[2024-12-02 12:29:49,782] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: cannot convert the series to <class 'int'>[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 155, in analyze_with_gpt
+    'stats': {
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 159, in <dictcomp>
+    'count': int(processed_df[col].count())
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/series.py", line 247, in wrapper
+    raise TypeError(f"cannot convert the series to {converter}")
+TypeError: cannot convert the series to <class 'int'>
+[2024-12-02 12:29:49,782] ERROR in routes:
+[0;31mError during file analysis: 400: cannot convert the series to <class 'int'>[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 155, in analyze_with_gpt
+    'stats': {
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 159, in <dictcomp>
+    'count': int(processed_df[col].count())
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/series.py", line 247, in wrapper
+    raise TypeError(f"cannot convert the series to {converter}")
+TypeError: cannot convert the series to <class 'int'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 274, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: cannot convert the series to <class 'int'>
+[2024-12-02 12:31:50,185] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: Object of type Timestamp is not JSON serializable[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 128, in analyze_with_gpt
+    {json.dumps(data_info, indent=2)}
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 325, in _iterencode_list
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Timestamp is not JSON serializable
+[2024-12-02 12:31:50,186] ERROR in routes:
+[0;31mError during file analysis: 400: Object of type Timestamp is not JSON serializable[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 128, in analyze_with_gpt
+    {json.dumps(data_info, indent=2)}
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 325, in _iterencode_list
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Timestamp is not JSON serializable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 244, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: Object of type Timestamp is not JSON serializable
+[2024-12-02 12:33:27,959] ERROR in gpt:
+[0;31mMissing column in DataFrame: 'count'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 153, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 182, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'count'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 226, in analyze_with_gpt
+    if pd.api.types.is_datetime64_dtype(chart_df[col]):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4090, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3809, in get_loc
+    raise KeyError(key) from err
+KeyError: 'count'
+[2024-12-02 12:33:27,963] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: Column not found in data: 'count'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 153, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 182, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'count'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 226, in analyze_with_gpt
+    if pd.api.types.is_datetime64_dtype(chart_df[col]):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4090, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3809, in get_loc
+    raise KeyError(key) from err
+KeyError: 'count'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 248, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Column not found in data: 'count'
+[2024-12-02 12:33:27,964] ERROR in routes:
+[0;31mError during file analysis: 400: 500: Column not found in data: 'count'[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 153, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 182, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'count'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 226, in analyze_with_gpt
+    if pd.api.types.is_datetime64_dtype(chart_df[col]):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4090, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3809, in get_loc
+    raise KeyError(key) from err
+KeyError: 'count'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 248, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Column not found in data: 'count'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 264, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 400: 500: Column not found in data: 'count'
+[2024-12-02 12:36:09,367] ERROR in routes:
+[0;31mError during file analysis: "None of [Index(['date', 'clicks'], dtype='object')] are in the [columns]"[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 36, in analyze_file
+    chart["data"] = prepare_chart_data(df, chart)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/data.py", line 9, in prepare_chart_data
+    return df[chart_config["data_columns"]].to_dict('records')
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4096, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6199, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6248, in _raise_if_missing
+    raise KeyError(f"None of [{key}] are in the [{axis_name}]")
+KeyError: "None of [Index(['date', 'clicks'], dtype='object')] are in the [columns]"
