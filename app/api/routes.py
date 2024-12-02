@@ -1,18 +1,25 @@
 # app/api/routes.py
 from fastapi import APIRouter, UploadFile, File, HTTPException
+from fastapi.param_functions import Form
 from ..services.gpt import analyze_with_gpt
 from ..services.data import process_file_content, prepare_chart_data
 from ..models.schemas import AnalysisResponse
 from .auth_routes import auth_router
 from ..utils.logger import logger, handle_errors
+from typing import Optional
 
 router = APIRouter()
 
 
 @router.post("/analyze", response_model=AnalysisResponse)
 @handle_errors
-async def analyze_file(file: UploadFile = File(...)):
+async def analyze_file(
+    file: UploadFile = File(...),
+    user_question: Optional[str] = Form(None)
+):
     logger.info(f"Starting analysis for file: {file.filename}")
+    if user_question:
+        logger.info(f"User question: {user_question}")
 
     try:
         # Read file content
@@ -26,7 +33,7 @@ async def analyze_file(file: UploadFile = File(...)):
 
         # Get analysis from GPT
         logger.info("Starting GPT analysis")
-        analysis = analyze_with_gpt(df)
+        analysis = analyze_with_gpt(df, user_question=user_question)
         logger.info("GPT analysis completed successfully")
 
         # Prepare chart data

@@ -1089,3 +1089,100 @@ Traceback (most recent call last):
   File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6248, in _raise_if_missing
     raise KeyError(f"None of [{key}] are in the [{axis_name}]")
 KeyError: "None of [Index(['date', 'clicks'], dtype='object')] are in the [columns]"
+[2024-12-02 12:51:44,760] ERROR in gpt:
+[0;31mMissing column in DataFrame: "['profit/sales'] not in index"[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 130, in analyze_with_gpt
+    chart["data"] = df[chart["data_columns"]].to_dict('records')
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4096, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6199, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6251, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['profit/sales'] not in index"
+[2024-12-02 12:51:44,765] ERROR in gpt:
+[0;31mUnexpected error in analyze_with_gpt: 500: Column not found in data: "['profit/sales'] not in index"[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 130, in analyze_with_gpt
+    chart["data"] = df[chart["data_columns"]].to_dict('records')
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4096, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6199, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6251, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['profit/sales'] not in index"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 133, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Column not found in data: "['profit/sales'] not in index"
+[2024-12-02 12:51:44,765] ERROR in routes:
+[0;31mError during file analysis: 500: Column not found in data: "['profit/sales'] not in index"[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 130, in analyze_with_gpt
+    chart["data"] = df[chart["data_columns"]].to_dict('records')
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4096, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6199, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6251, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['profit/sales'] not in index"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 133, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Column not found in data: "['profit/sales'] not in index"
+[2024-12-02 12:56:52,399] ERROR in routes:
+[0;31mError during file analysis: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/data.py", line 22, in process_file_content
+    return pd.read_csv(StringIO(content.decode('utf-8')))
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 31, in analyze_file
+    df = process_file_content(content, file.filename)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/data.py", line 28, in process_file_content
+    raise ValueError(f"Failed to process file: {str(e)}")
+ValueError: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte
+[2024-12-02 12:58:51,366] ERROR in routes:
+[0;31mError during file analysis: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/data.py", line 22, in process_file_content
+    return pd.read_csv(StringIO(content.decode('utf-8')))
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 31, in analyze_file
+    df = process_file_content(content, file.filename)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/data.py", line 28, in process_file_content
+    raise ValueError(f"Failed to process file: {str(e)}")
+ValueError: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte
+[2024-12-02 12:59:06,855] ERROR in routes:
+[0;31mError during file analysis: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/data.py", line 22, in process_file_content
+    return pd.read_csv(StringIO(content.decode('utf-8')))
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 31, in analyze_file
+    df = process_file_content(content, file.filename)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/data.py", line 28, in process_file_content
+    raise ValueError(f"Failed to process file: {str(e)}")
+ValueError: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte

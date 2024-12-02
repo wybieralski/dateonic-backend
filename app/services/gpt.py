@@ -1,17 +1,19 @@
-# app/services/gpt.py
 from openai import OpenAI
 from ..config import settings
 import json
 import pandas as pd
 from ..utils.logger import logger
 from fastapi import HTTPException
+from typing import Optional
 
 client = OpenAI(api_key=settings.openai_api_key)
 
 
-def analyze_with_gpt(df: pd.DataFrame):
+def analyze_with_gpt(df: pd.DataFrame, user_question: Optional[str] = None):
     try:
         logger.info("Preparing data for GPT analysis")
+        if user_question:
+            logger.info(f"User question: {user_question}")
 
         # Prepare dataset information
         data_info = {
@@ -25,10 +27,23 @@ def analyze_with_gpt(df: pd.DataFrame):
 
         logger.debug(f"Dataset info prepared. Columns: {', '.join(data_info['columns'])}")
 
+        # Base prompt
         prompt = f"""
-        Przeanalizuj ten zbiór danych i zaproponuj dokładnie 4 różne wizualizacje:
+        Przeanalizuj ten zbiór danych:
         {json.dumps(data_info, indent=2)}
+        """
 
+        # Add user question if provided
+        if user_question:
+            prompt += f"""
+
+        Dodatkowe pytanie od uzytkownika: {user_question}
+
+        Dostosuj swoją analizę, aby odpowiedzieć na to pytanie, ale także pokaż inne ważne aspekty danych. 
+        Jesli w pytaniu nie ma nic zwiazanego z danymi to je ignoruj.
+        """
+
+        prompt += """
         MUSISZ zwrócić dokładnie 4 wykresy w tej kolejności:
         1. Wykres liniowy pokazujący trendy lub zmiany w czasie
         2. Wykres słupkowy porównujący kategorie lub grupy  
@@ -36,36 +51,36 @@ def analyze_with_gpt(df: pd.DataFrame):
         4. Wykres słupkowy pokazujący inne istotne porównanie
 
         Return ONLY JSON with exactly this structure:
-        {{
+        {
             "suggested_charts": [
-                {{
+                {
                     "type": "line",
                     "title": "chart_title",
                     "description": "why this visualization is useful",
                     "data_columns": ["x_axis_column", "y_axis_column1", "y_axis_column2"],
                     "data": []
-                }},
-                {{
+                },
+                {
                     "type": "bar",
                     "title": "chart_title",
                     "description": "why this visualization is useful",
                     "data_columns": ["category_column", "value_column"],
                     "data": []
-                }},
-                {{
+                },
+                {
                     "type": "pie",
                     "title": "chart_title",
                     "description": "why this visualization is useful",
                     "data_columns": ["category_column"],
                     "data": []
-                }},
-                {{
+                },
+                {
                     "type": "bar",
                     "title": "chart_title",
                     "description": "why this visualization is useful",
                     "data_columns": ["category_column", "value_column"],
                     "data": []
-                }}
+                }
             ],
             "key_insights": [
                 "insight about trends",
@@ -77,7 +92,7 @@ def analyze_with_gpt(df: pd.DataFrame):
                 "suggestion 1",
                 "suggestion 2"
             ]
-        }}
+        }
 
         Upewnij się, że:
         1. Każdy wykres używa odpowiednich kolumn ze zbioru danych
@@ -89,11 +104,15 @@ def analyze_with_gpt(df: pd.DataFrame):
 
         logger.info("Sending request to OpenAI API")
         try:
+            system_prompt = "Jesteś doświadczonym data analitykiem + analitykiem biznesowym. "
+            if user_question:
+                system_prompt += "Skup się na odpowiedzi na pytanie użytkownika, pokazując odpowiednie wizualizacje i wnioski. "
+            system_prompt += "Stwórz sensowne wizualizacje które pomogą zrozumiec te dane i wyciągnać z nich wnioski biznesowe"
+
             response = client.chat.completions.create(
                 model=settings.model_name,
                 messages=[
-                    {"role": "system",
-                     "content": "Jesteś doświadczonym data analitykiem + analitykiem biznesowym. Stwórz sensowne wizualizacje które pomogą zrozumiec te dane i wyciągnać z nich wnioski biznesowe"},
+                    {"role": "system", "content": system_prompt},
                     {"role": "user", "content": prompt}
                 ]
             )

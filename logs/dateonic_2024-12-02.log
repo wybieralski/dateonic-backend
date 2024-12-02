@@ -1701,3 +1701,285 @@ KeyError: "None of [Index(['date', 'clicks'], dtype='object')] are in the [colum
 [2024-12-02 12:39:01,969] DEBUG in routes: [0;36mPreparing data for chart: Rozkład konwersji pomiędzy kampaniami[0m
 [2024-12-02 12:39:01,969] DEBUG in routes: [0;36mPreparing data for chart: Porównanie ROAS (zwrotu z wydatków reklamowych) różnych kampanii[0m
 [2024-12-02 12:39:01,969] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:51:21,555] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 12:51:21,555] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:51:21,555] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:51:21,563] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 4)[0m
+[2024-12-02 12:51:21,563] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:51:21,563] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 12:51:21,571] DEBUG in gpt: [0;36mDataset info prepared. Columns: date, sales, profit, category[0m
+[2024-12-02 12:51:21,571] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 12:51:44,753] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 12:51:44,753] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 12:51:44,753] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 12:51:44,753] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 12:51:44,757] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:51:44,758] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 12:51:44,759] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:51:44,760] ERROR in gpt: [0;31mMissing column in DataFrame: "['profit/sales'] not in index"[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 130, in analyze_with_gpt
+    chart["data"] = df[chart["data_columns"]].to_dict('records')
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4096, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6199, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6251, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['profit/sales'] not in index"
+[2024-12-02 12:51:44,765] ERROR in gpt: [0;31mUnexpected error in analyze_with_gpt: 500: Column not found in data: "['profit/sales'] not in index"[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 130, in analyze_with_gpt
+    chart["data"] = df[chart["data_columns"]].to_dict('records')
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4096, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6199, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6251, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['profit/sales'] not in index"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 133, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Column not found in data: "['profit/sales'] not in index"
+[2024-12-02 12:51:44,765] ERROR in routes: [0;31mError during file analysis: 500: Column not found in data: "['profit/sales'] not in index"[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 130, in analyze_with_gpt
+    chart["data"] = df[chart["data_columns"]].to_dict('records')
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/frame.py", line 4096, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6199, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/.venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6251, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['profit/sales'] not in index"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 29, in analyze_file
+    analysis = analyze_with_gpt(df)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/gpt.py", line 133, in analyze_with_gpt
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 500: Column not found in data: "['profit/sales'] not in index"
+[2024-12-02 12:51:44,766] WARNING in logger: [0;33mHTTP 400: 500: Column not found in data: "['profit/sales'] not in index"[0m
+[2024-12-02 12:56:52,398] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 12:56:52,399] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:56:52,399] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:56:52,399] ERROR in routes: [0;31mError during file analysis: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/data.py", line 22, in process_file_content
+    return pd.read_csv(StringIO(content.decode('utf-8')))
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 31, in analyze_file
+    df = process_file_content(content, file.filename)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/data.py", line 28, in process_file_content
+    raise ValueError(f"Failed to process file: {str(e)}")
+ValueError: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte
+[2024-12-02 12:56:52,400] WARNING in logger: [0;33mHTTP 400: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte[0m
+[2024-12-02 12:57:00,595] INFO in routes: [0;32mStarting analysis for file: marketing_campaign.csv[0m
+[2024-12-02 12:57:00,595] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:57:00,595] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:57:00,605] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (24, 10)[0m
+[2024-12-02 12:57:00,605] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:57:00,605] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 12:57:00,620] DEBUG in gpt: [0;36mDataset info prepared. Columns: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS[0m
+[2024-12-02 12:57:00,620] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 12:57:37,698] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 12:57:37,699] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 12:57:37,699] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 12:57:37,699] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 12:57:37,702] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:57:37,703] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 12:57:37,704] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:57:37,705] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:57:37,705] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 12:57:37,705] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:57:37,705] DEBUG in routes: [0;36mPreparing data for chart: Trend ilości kliknięć i konwersji w czasie[0m
+[2024-12-02 12:57:37,705] DEBUG in routes: [0;36mPreparing data for chart: Porównanie kosztów i wartości konwersji między kampaniami reklamowymi[0m
+[2024-12-02 12:57:37,706] DEBUG in routes: [0;36mPreparing data for chart: Rozkład wyświetleń między kampaniami[0m
+[2024-12-02 12:57:37,706] DEBUG in routes: [0;36mPreparing data for chart: Porównanie wskaźników klikalności (CTR) i kosztu za kliknięcie (CPC) w ramach kampanii[0m
+[2024-12-02 12:57:37,706] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:58:11,575] INFO in routes: [0;32mStarting analysis for file: marketing_campaign.csv[0m
+[2024-12-02 12:58:11,576] INFO in routes: [0;32mUser question: Chcę sie dowiedziec co ma najwiekszy wplyw na roas[0m
+[2024-12-02 12:58:11,576] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:58:11,576] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:58:11,578] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (24, 10)[0m
+[2024-12-02 12:58:11,579] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 12:58:11,579] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 12:58:11,579] INFO in gpt: [0;32mUser question: Chcę sie dowiedziec co ma najwiekszy wplyw na roas[0m
+[2024-12-02 12:58:11,586] DEBUG in gpt: [0;36mDataset info prepared. Columns: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS[0m
+[2024-12-02 12:58:11,586] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 12:58:36,819] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 12:58:36,820] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 12:58:36,820] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 12:58:36,820] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 12:58:36,821] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:58:36,821] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 12:58:36,822] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 12:58:36,822] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:58:36,822] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 12:58:36,822] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 12:58:36,822] DEBUG in routes: [0;36mPreparing data for chart: Trendy ROAS w czasie[0m
+[2024-12-02 12:58:36,823] DEBUG in routes: [0;36mPreparing data for chart: Porównanie ROAS między różnymi kampaniami[0m
+[2024-12-02 12:58:36,823] DEBUG in routes: [0;36mPreparing data for chart: Rozkład konwersji między różnymi kampaniami[0m
+[2024-12-02 12:58:36,823] DEBUG in routes: [0;36mPreparing data for chart: Porównanie kosztu na kliknięcie (CPC) między różnymi kampaniami[0m
+[2024-12-02 12:58:36,824] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 12:58:51,365] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 12:58:51,366] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:58:51,366] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:58:51,366] ERROR in routes: [0;31mError during file analysis: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/data.py", line 22, in process_file_content
+    return pd.read_csv(StringIO(content.decode('utf-8')))
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 31, in analyze_file
+    df = process_file_content(content, file.filename)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/data.py", line 28, in process_file_content
+    raise ValueError(f"Failed to process file: {str(e)}")
+ValueError: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte
+[2024-12-02 12:58:51,366] WARNING in logger: [0;33mHTTP 400: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte[0m
+[2024-12-02 12:59:06,854] INFO in routes: [0;32mStarting analysis for file: sales_data.csv[0m
+[2024-12-02 12:59:06,855] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 12:59:06,855] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 12:59:06,855] ERROR in routes: [0;31mError during file analysis: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte[0m
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/data.py", line 22, in process_file_content
+    return pd.read_csv(StringIO(content.decode('utf-8')))
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/api/routes.py", line 31, in analyze_file
+    df = process_file_content(content, file.filename)
+  File "/Users/lukaszw/PycharmProjects/Dateonic/backend/app/services/data.py", line 28, in process_file_content
+    raise ValueError(f"Failed to process file: {str(e)}")
+ValueError: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte
+[2024-12-02 12:59:06,856] WARNING in logger: [0;33mHTTP 400: Failed to process file: 'utf-8' codec can't decode byte 0x82 in position 12: invalid start byte[0m
+[2024-12-02 13:00:05,310] INFO in routes: [0;32mStarting analysis for file: sales-data.csv[0m
+[2024-12-02 13:00:05,311] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 13:00:05,311] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 13:00:05,317] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 15)[0m
+[2024-12-02 13:00:05,317] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 13:00:05,317] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 13:00:05,327] DEBUG in gpt: [0;36mDataset info prepared. Columns: deal_id, company, status, value, probability, created_date, expected_close_date, sales_rep, contact_name, contact_role, competitor, lead_source, last_contact, meetings_held, emails_sent[0m
+[2024-12-02 13:00:05,328] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 13:00:25,014] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 13:00:25,016] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 13:00:25,016] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 13:00:25,016] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 13:00:25,019] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 13:00:25,021] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 13:00:25,022] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 13:00:25,023] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 13:00:25,023] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 13:00:25,023] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 13:00:25,023] DEBUG in routes: [0;36mPreparing data for chart: Średnie ceny transakcji na przestrzeni czasu[0m
+[2024-12-02 13:00:25,024] DEBUG in routes: [0;36mPreparing data for chart: Porównanie efektywności sprzedawców[0m
+[2024-12-02 13:00:25,025] DEBUG in routes: [0;36mPreparing data for chart: Rozkład źródeł leadów[0m
+[2024-12-02 13:00:25,025] DEBUG in routes: [0;36mPreparing data for chart: Porównanie liczby wysłanych e-maili[0m
+[2024-12-02 13:00:25,027] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 13:01:22,039] INFO in routes: [0;32mStarting analysis for file: user_conversion.csv[0m
+[2024-12-02 13:01:22,072] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 13:01:22,078] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 13:01:22,079] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (20, 4)[0m
+[2024-12-02 13:01:22,080] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 13:01:22,080] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 13:01:22,088] DEBUG in gpt: [0;36mDataset info prepared. Columns: user_id, last_login, purchase_amount, items_in_cart[0m
+[2024-12-02 13:01:22,089] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 13:02:15,425] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 13:02:15,427] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 13:02:15,427] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 13:02:15,427] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 13:02:15,432] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 13:02:15,433] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 13:02:15,435] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 13:02:15,436] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 13:02:15,436] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 13:02:15,436] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 13:02:15,436] DEBUG in routes: [0;36mPreparing data for chart: Zmiany wartości zakupów w czasie[0m
+[2024-12-02 13:02:15,437] DEBUG in routes: [0;36mPreparing data for chart: Ilość produktów w koszyku[0m
+[2024-12-02 13:02:15,437] DEBUG in routes: [0;36mPreparing data for chart: Rozkład wartości zakupów[0m
+[2024-12-02 13:02:15,438] DEBUG in routes: [0;36mPreparing data for chart: Porównanie ilości i wartości zakupów[0m
+[2024-12-02 13:02:15,438] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 13:03:49,427] INFO in routes: [0;32mStarting analysis for file: user_conversion.csv[0m
+[2024-12-02 13:03:49,428] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 13:03:49,428] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 13:03:49,436] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (20, 4)[0m
+[2024-12-02 13:03:49,436] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 13:03:49,436] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 13:03:49,454] DEBUG in gpt: [0;36mDataset info prepared. Columns: user_id, last_login, purchase_amount, items_in_cart[0m
+[2024-12-02 13:03:49,456] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 13:04:17,998] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 13:04:18,003] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 13:04:18,003] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 13:04:18,003] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 13:04:18,006] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 13:04:18,009] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 13:04:18,009] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 13:04:18,016] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 13:04:18,016] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 13:04:18,016] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 13:04:18,016] DEBUG in routes: [0;36mPreparing data for chart: Trendy zakupów w czasie[0m
+[2024-12-02 13:04:18,020] DEBUG in routes: [0;36mPreparing data for chart: Porównanie ilości zakupionych przedmiotów[0m
+[2024-12-02 13:04:18,023] DEBUG in routes: [0;36mPreparing data for chart: Rozkład ilości przedmiotów w koszyku[0m
+[2024-12-02 13:04:18,036] DEBUG in routes: [0;36mPreparing data for chart: Porównanie użytkowników na podstawie wartości zakupów[0m
+[2024-12-02 13:04:18,056] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 13:04:42,282] INFO in routes: [0;32mStarting analysis for file: sales-data.csv[0m
+[2024-12-02 13:04:42,284] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 13:04:42,285] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 13:04:42,290] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (5, 15)[0m
+[2024-12-02 13:04:42,290] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 13:04:42,290] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 13:04:42,300] DEBUG in gpt: [0;36mDataset info prepared. Columns: deal_id, company, status, value, probability, created_date, expected_close_date, sales_rep, contact_name, contact_role, competitor, lead_source, last_contact, meetings_held, emails_sent[0m
+[2024-12-02 13:04:42,301] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 13:05:06,729] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 13:05:06,730] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 13:05:06,730] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 13:05:06,730] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 13:05:06,732] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 13:05:06,733] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 13:05:06,734] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 13:05:06,735] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 13:05:06,735] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 13:05:06,736] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 13:05:06,736] DEBUG in routes: [0;36mPreparing data for chart: Trend zmian wartości ofert w czasie[0m
+[2024-12-02 13:05:06,737] DEBUG in routes: [0;36mPreparing data for chart: Porównanie liczby spotkań i wysłanych e-maili[0m
+[2024-12-02 13:05:06,738] DEBUG in routes: [0;36mPreparing data for chart: Rozkład ofert według statusu[0m
+[2024-12-02 13:05:06,738] DEBUG in routes: [0;36mPreparing data for chart: Porównanie prawdopodobieństwa zamknięcia oferty przez poszczególnych pracowników[0m
+[2024-12-02 13:05:06,739] INFO in routes: [0;32mAnalysis completed successfully[0m
+[2024-12-02 13:07:24,687] INFO in routes: [0;32mStarting analysis for file: marketing_campaign.csv[0m
+[2024-12-02 13:07:24,687] DEBUG in routes: [0;36mReading file content[0m
+[2024-12-02 13:07:24,688] DEBUG in routes: [0;36mProcessing file content[0m
+[2024-12-02 13:07:24,693] INFO in routes: [0;32mSuccessfully processed file. DataFrame shape: (24, 10)[0m
+[2024-12-02 13:07:24,693] INFO in routes: [0;32mStarting GPT analysis[0m
+[2024-12-02 13:07:24,693] INFO in gpt: [0;32mPreparing data for GPT analysis[0m
+[2024-12-02 13:07:24,702] DEBUG in gpt: [0;36mDataset info prepared. Columns: Campaign_Name, Date, Impressions, Clicks, Cost, Conversions, Conversion_Value, CTR, CPC, ROAS[0m
+[2024-12-02 13:07:24,702] INFO in gpt: [0;32mSending request to OpenAI API[0m
+[2024-12-02 13:08:12,891] INFO in gpt: [0;32mSuccessfully received response from OpenAI API[0m
+[2024-12-02 13:08:12,892] DEBUG in gpt: [0;36mSuccessfully parsed GPT response[0m
+[2024-12-02 13:08:12,892] INFO in gpt: [0;32mPreparing chart data[0m
+[2024-12-02 13:08:12,892] DEBUG in gpt: [0;36mProcessing chart type: line[0m
+[2024-12-02 13:08:12,894] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 13:08:12,894] DEBUG in gpt: [0;36mProcessing chart type: pie[0m
+[2024-12-02 13:08:12,895] DEBUG in gpt: [0;36mProcessing chart type: bar[0m
+[2024-12-02 13:08:12,895] INFO in gpt: [0;32mAnalysis completed successfully[0m
+[2024-12-02 13:08:12,895] INFO in routes: [0;32mGPT analysis completed successfully[0m
+[2024-12-02 13:08:12,895] DEBUG in routes: [0;36mPreparing chart data[0m
+[2024-12-02 13:08:12,895] DEBUG in routes: [0;36mPreparing data for chart: Zmiany kosztów i wartości konwersji w czasie[0m
+[2024-12-02 13:08:12,896] DEBUG in routes: [0;36mPreparing data for chart: Porównanie skuteczności kampanii[0m
+[2024-12-02 13:08:12,896] DEBUG in routes: [0;36mPreparing data for chart: Rozkład kostów w kampaniach[0m
+[2024-12-02 13:08:12,896] DEBUG in routes: [0;36mPreparing data for chart: Porównanie CTR i CPC w kampaniach[0m
+[2024-12-02 13:08:12,897] INFO in routes: [0;32mAnalysis completed successfully[0m
